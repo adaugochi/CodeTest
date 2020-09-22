@@ -6,7 +6,11 @@
     "type": "project",
     "require": {
         "php": "^7.2.5",
+        "dusterio/lumen-passport": "^0.2.20",
+        "flipbox/lumen-generator": "^8.0",
         "laravel/lumen-framework": "^7.0",
+        "laravel/passport": "^9.3",
+        "mpociot/laravel-apidoc-generator": "^4.8",
         "symfony/psr-http-message-bridge": "^2.0"
     },
     "require-dev": {

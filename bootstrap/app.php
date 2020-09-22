@@ -27,6 +27,10 @@ $app = new Laravel\Lumen\Application(
 
  $app->withEloquent();
 
+$app->bind(\Illuminate\Contracts\Routing\UrlGenerator::class, function ($app) {
+    return new \Laravel\Lumen\Routing\UrlGenerator($app);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -60,6 +64,9 @@ $app->singleton(
 */
 
 $app->configure('app');
+// Load auth config files
+$app->configure('auth');
+$app->configure('apidoc');
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +85,7 @@ $app->configure('app');
 
  $app->routeMiddleware([
      'auth' => App\Http\Middleware\Authenticate::class,
+     'client' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
  ]);
 
 /*
@@ -93,7 +101,12 @@ $app->configure('app');
 
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+ $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+ $app->register(Laravel\Passport\PassportServiceProvider::class);
+ $app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+\Dusterio\LumenPassport\LumenPassport::routes($app->router, ['prefix' => 'api/oauth']);
+ $app->register(App\Providers\EventServiceProvider::class);
+ $app->register(\Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

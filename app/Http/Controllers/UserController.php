@@ -11,17 +11,28 @@ namespace App\Http\Controllers;
 use App\User;
 
 /**
+ * @group  User Authentication
+ *
+ * APIs for managing users
+ * @authenticated
+ *
  * Class UserController
  * @package App\Http\Controllers
- * @author Adaa Mgbede <adaa@cottacush.com>
+ * @author Adaa Mgbede <adaamgbede@gmail.com>
  */
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('client');
     }
 
+    /**
+     * @urlParam  id required The ID of the user.
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @author Adaa Mgbede <adaa@cottacush.com>
+     */
     public function show($id)
     {
         $user = User::find($id);
