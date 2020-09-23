@@ -33,7 +33,13 @@ php artisan migrate
 ~~~
 php artisan passport:client --personal
 ~~~
-## License
+
+## Run PHPunit Test
 ~~~
-php artisan migrate
+vendor/bin/phpunit
+~~~
+
+## API documentation
+~~~
+BASE_URL/docs
 ~~~

@@ -1,0 +1,11 @@
+{
+  "status": "success",
+  "result": {
+    "id": 1,
+    "first_name": "Adaa",
+    "last_name": "Mgbede",
+    "email": "ada@gmail.com",
+    "created_at": "2020-09-22T00:40:53.000000Z",
+    "updated_at": "2020-09-22T00:40:53.000000Z"
+  }
+}

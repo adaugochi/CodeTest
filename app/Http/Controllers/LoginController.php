@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Validator;
 /**
  * @group  User Authentication
  *
- * APIs for managing users
- *
  * Class LoginController
  * @package App\Http\Controllers
  * @author Adaa Mgbede <adaamgbede@gmail.com>
@@ -19,32 +17,22 @@ use Illuminate\Support\Facades\Validator;
 class LoginController extends Controller
 {
     /**
-     *
-     * If the user credential are valid, a success response and API token is sent to the service making the API call.
-     * If it is not a valid user, it returns a failed response with a status code of 401
-     *
+     * User Login
      *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      *
-     * @response {
-     *  "status": "success",
-     *  "access_token": "eyJ0eXAiOiJKV1Qi..."
-     * }
-     *
-     * @response  401 {
-     *  "status": "failed",
-     *  "message": "Incorrect login credentials"
-     * }
-     *
-     * @response  500 {
-     *  "status": "failed",
-     *  "message": "This account does not exist"
-     * }
+     * @response {"status": "success","access_token": "eyJ0eXAiOiJKV1Qi..."}
+     * @response  401 {"status": "failed","message": "Incorrect login credentials"}
+     * @response  500 {"status": "failed","message": "This account does not exist"}
      *
      * @bodyParam  email email required The email of the user. Example: abc@example.com
-     * @bodyParam  password required The password of the user. Example: 111111
+     * @bodyParam  password string required The password of the user. Example: 111111
+     *
+     * If the user credential are valid, a success response and API token is sent to
+     * the service making the API call. If it is not a valid user, it returns a
+     * failed response with a status code of 401
      */
     public function login(Request $request)
     {

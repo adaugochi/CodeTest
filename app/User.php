@@ -12,7 +12,6 @@ use Laravel\Passport\HasApiTokens;
 /**
  * @property mixed email
  * @property string password
- * @property string api_token
  * @property string created_at
  */
 class User extends Model implements AuthenticatableContract, AuthorizableContract

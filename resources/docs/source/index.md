@@ -25,14 +25,15 @@ Welcome to the generated API reference.
 
 APIs for managing users
 
-Class ApiAuthController
-<!-- START_d7b7952e7fdddc07c978c9bdaf757acf -->
-## api/register
+Class RegisterController
+<!-- START_638687f1aca2f1e69b360d1516c7c1f9 -->
+## User Registration
+
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/register" \
+    "http://localhost/api/user/register" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d '{"first_name":"John","last_name":"Doe","email":"abc@example.com","password":"111111"}'
@@ -41,7 +42,7 @@ curl -X POST \
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/register"
+    "http://localhost/api/user/register"
 );
 
 let headers = {
@@ -83,7 +84,7 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`POST api/register`
+`POST api/user/register`
 
 #### Body Parameters
 Parameter | Type | Status | Description
@@ -93,18 +94,16 @@ Parameter | Type | Status | Description
         `email` | email |  required  | The email of the user.
         `password` | required |  optional  | The password of the user.
     
-<!-- END_d7b7952e7fdddc07c978c9bdaf757acf -->
+<!-- END_638687f1aca2f1e69b360d1516c7c1f9 -->
 
-<!-- START_c3fa189a6c95ca36ad6ac4791a873d23 -->
-## If the user credential are valid, a success response and API token is sent to the service making the API call.
-
-If it is not a valid user, it returns a failed response with a status code of 401
+<!-- START_57e3b4272508c324659e49ba5758c70f -->
+## User Login
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/login" \
+    "http://localhost/api/user/login" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json" \
     -d '{"email":"abc@example.com","password":"111111"}'
@@ -113,7 +112,7 @@ curl -X POST \
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/login"
+    "http://localhost/api/user/login"
 );
 
 let headers = {
@@ -162,31 +161,32 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`POST api/login`
+`POST api/user/login`
 
 #### Body Parameters
 Parameter | Type | Status | Description
 --------- | ------- | ------- | ------- | -----------
     `email` | email |  required  | The email of the user.
-        `password` | required |  optional  | The password of the user.
+        `password` | string |  required  | The password of the user.
     
-<!-- END_c3fa189a6c95ca36ad6ac4791a873d23 -->
+<!-- END_57e3b4272508c324659e49ba5758c70f -->
 
-<!-- START_01075f2107bd5c278b05766440915f79 -->
-## api/users/{id}
+<!-- START_9bbfc13f0750a7e9c27c0786a5f67e0a -->
+## Fetch authorize user data
+
 <br><small style="padding: 1px 9px 2px;font-weight: bold;white-space: nowrap;color: #ffffff;-webkit-border-radius: 9px;-moz-border-radius: 9px;border-radius: 9px;background-color: #3a87ad;">Requires authentication</small>
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/users/aut" \
+    -G "http://localhost/api/user/eius" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/users/aut"
+    "http://localhost/api/user/eius"
 );
 
 let headers = {
@@ -203,14 +203,24 @@ fetch(url, {
 ```
 
 
-> Example response (500):
+> Example response (200):
 
 ```json
-null
+{
+    "status": "success",
+    "result": {
+        "id": 1,
+        "first_name": "Adaa",
+        "last_name": "Mgbede",
+        "email": "ada@gmail.com",
+        "created_at": "2020-09-22T00:40:53.000000Z",
+        "updated_at": "2020-09-22T00:40:53.000000Z"
+    }
+}
 ```
 
 ### HTTP Request
-`GET api/users/{id}`
+`GET api/user/{id}`
 
 #### URL Parameters
 
@@ -218,26 +228,26 @@ Parameter | Status | Description
 --------- | ------- | ------- | -------
     `id` |  required  | The ID of the user.
 
-<!-- END_01075f2107bd5c278b05766440915f79 -->
+<!-- END_9bbfc13f0750a7e9c27c0786a5f67e0a -->
 
 #general
 
 
-<!-- START_afa573efcb404c394e835b474f167e56 -->
+<!-- START_a09d20357336aa979ecd8e3972ac9168 -->
 ## Authorize a client to access the user&#039;s account.
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/oauth/token" \
+    "http://localhost/oauth/token" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/token"
+    "http://localhost/oauth/token"
 );
 
 let headers = {
@@ -256,26 +266,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/oauth/token`
+`POST oauth/token`
 
 
-<!-- END_afa573efcb404c394e835b474f167e56 -->
+<!-- END_a09d20357336aa979ecd8e3972ac9168 -->
 
-<!-- START_b4bff9acd35af4f8e7052cc499256d80 -->
+<!-- START_d6a56149547e03307199e39e03e12d1c -->
 ## Get all of the authorized tokens for the authenticated user.
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/oauth/tokens" \
+    -G "http://localhost/oauth/tokens" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/tokens"
+    "http://localhost/oauth/tokens"
 );
 
 let headers = {
@@ -301,26 +311,26 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/oauth/tokens`
+`GET oauth/tokens`
 
 
-<!-- END_b4bff9acd35af4f8e7052cc499256d80 -->
+<!-- END_d6a56149547e03307199e39e03e12d1c -->
 
-<!-- START_3426813d113e67889b69895375b2f1e8 -->
+<!-- START_a9a802c25737cca5324125e5f60b72a5 -->
 ## Delete the given token.
 
 > Example request:
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/oauth/tokens/1" \
+    "http://localhost/oauth/tokens/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/tokens/1"
+    "http://localhost/oauth/tokens/1"
 );
 
 let headers = {
@@ -339,26 +349,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/oauth/tokens/{token_id}`
+`DELETE oauth/tokens/{token_id}`
 
 
-<!-- END_3426813d113e67889b69895375b2f1e8 -->
+<!-- END_a9a802c25737cca5324125e5f60b72a5 -->
 
-<!-- START_042c9d482936925dc0c20931422c64d3 -->
+<!-- START_abe905e69f5d002aa7d26f433676d623 -->
 ## Get a fresh transient token cookie for the authenticated user.
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/oauth/token/refresh" \
+    "http://localhost/oauth/token/refresh" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/token/refresh"
+    "http://localhost/oauth/token/refresh"
 );
 
 let headers = {
@@ -377,26 +387,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/oauth/token/refresh`
+`POST oauth/token/refresh`
 
 
-<!-- END_042c9d482936925dc0c20931422c64d3 -->
+<!-- END_abe905e69f5d002aa7d26f433676d623 -->
 
-<!-- START_ac7d23bc3d155ecf4023a1b8b6353703 -->
+<!-- START_babcfe12d87b8708f5985e9d39ba8f2c -->
 ## Get all of the clients for the authenticated user.
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/oauth/clients" \
+    -G "http://localhost/oauth/clients" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/clients"
+    "http://localhost/oauth/clients"
 );
 
 let headers = {
@@ -422,26 +432,26 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/oauth/clients`
+`GET oauth/clients`
 
 
-<!-- END_ac7d23bc3d155ecf4023a1b8b6353703 -->
+<!-- END_babcfe12d87b8708f5985e9d39ba8f2c -->
 
-<!-- START_df9661e38978cc5e272bf288d2249a8c -->
+<!-- START_9eabf8d6e4ab449c24c503fcb42fba82 -->
 ## Store a new client.
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/oauth/clients" \
+    "http://localhost/oauth/clients" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/clients"
+    "http://localhost/oauth/clients"
 );
 
 let headers = {
@@ -460,26 +470,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/oauth/clients`
+`POST oauth/clients`
 
 
-<!-- END_df9661e38978cc5e272bf288d2249a8c -->
+<!-- END_9eabf8d6e4ab449c24c503fcb42fba82 -->
 
-<!-- START_53ed6a8c6cd5825f50b9f05eeb7d02a6 -->
+<!-- START_784aec390a455073fc7464335c1defa1 -->
 ## Update the given client.
 
 > Example request:
 
 ```bash
 curl -X PUT \
-    "http://localhost/api/oauth/clients/1" \
+    "http://localhost/oauth/clients/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/clients/1"
+    "http://localhost/oauth/clients/1"
 );
 
 let headers = {
@@ -498,26 +508,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`PUT api/oauth/clients/{client_id}`
+`PUT oauth/clients/{client_id}`
 
 
-<!-- END_53ed6a8c6cd5825f50b9f05eeb7d02a6 -->
+<!-- END_784aec390a455073fc7464335c1defa1 -->
 
-<!-- START_c64c8de58bd9d1cade9ca3a8d5405256 -->
+<!-- START_1f65a511dd86ba0541d7ba13ca57e364 -->
 ## Delete the given client.
 
 > Example request:
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/oauth/clients/1" \
+    "http://localhost/oauth/clients/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/clients/1"
+    "http://localhost/oauth/clients/1"
 );
 
 let headers = {
@@ -536,26 +546,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/oauth/clients/{client_id}`
+`DELETE oauth/clients/{client_id}`
 
 
-<!-- END_c64c8de58bd9d1cade9ca3a8d5405256 -->
+<!-- END_1f65a511dd86ba0541d7ba13ca57e364 -->
 
-<!-- START_c15dbf978e9d50a3b0e91ff75f839b62 -->
+<!-- START_9e281bd3a1eb1d9eb63190c8effb607c -->
 ## Get all of the available scopes for the application.
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/oauth/scopes" \
+    -G "http://localhost/oauth/scopes" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/scopes"
+    "http://localhost/oauth/scopes"
 );
 
 let headers = {
@@ -581,26 +591,26 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/oauth/scopes`
+`GET oauth/scopes`
 
 
-<!-- END_c15dbf978e9d50a3b0e91ff75f839b62 -->
+<!-- END_9e281bd3a1eb1d9eb63190c8effb607c -->
 
-<!-- START_fcc2cce1f36e999858b5918ff32c6267 -->
+<!-- START_9b2a7699ce6214a79e0fd8107f8b1c9e -->
 ## Get all of the personal access tokens for the authenticated user.
 
 > Example request:
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/oauth/personal-access-tokens" \
+    -G "http://localhost/oauth/personal-access-tokens" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/personal-access-tokens"
+    "http://localhost/oauth/personal-access-tokens"
 );
 
 let headers = {
@@ -626,26 +636,26 @@ fetch(url, {
 ```
 
 ### HTTP Request
-`GET api/oauth/personal-access-tokens`
+`GET oauth/personal-access-tokens`
 
 
-<!-- END_fcc2cce1f36e999858b5918ff32c6267 -->
+<!-- END_9b2a7699ce6214a79e0fd8107f8b1c9e -->
 
-<!-- START_a4e17d5011f69f4b5dbfd7cff9befca7 -->
+<!-- START_a8dd9c0a5583742e671711f9bb3ee406 -->
 ## Create a new personal access token for the user.
 
 > Example request:
 
 ```bash
 curl -X POST \
-    "http://localhost/api/oauth/personal-access-tokens" \
+    "http://localhost/oauth/personal-access-tokens" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/personal-access-tokens"
+    "http://localhost/oauth/personal-access-tokens"
 );
 
 let headers = {
@@ -664,26 +674,26 @@ fetch(url, {
 
 
 ### HTTP Request
-`POST api/oauth/personal-access-tokens`
+`POST oauth/personal-access-tokens`
 
 
-<!-- END_a4e17d5011f69f4b5dbfd7cff9befca7 -->
+<!-- END_a8dd9c0a5583742e671711f9bb3ee406 -->
 
-<!-- START_94fb2b2f8e0254b40fa4b0a8ceb78956 -->
+<!-- START_bae65df80fd9d72a01439241a9ea20d0 -->
 ## Delete the given token.
 
 > Example request:
 
 ```bash
 curl -X DELETE \
-    "http://localhost/api/oauth/personal-access-tokens/1" \
+    "http://localhost/oauth/personal-access-tokens/1" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/oauth/personal-access-tokens/1"
+    "http://localhost/oauth/personal-access-tokens/1"
 );
 
 let headers = {
@@ -702,9 +712,9 @@ fetch(url, {
 
 
 ### HTTP Request
-`DELETE api/oauth/personal-access-tokens/{token_id}`
+`DELETE oauth/personal-access-tokens/{token_id}`
 
 
-<!-- END_94fb2b2f8e0254b40fa4b0a8ceb78956 -->
+<!-- END_bae65df80fd9d72a01439241a9ea20d0 -->
 
 

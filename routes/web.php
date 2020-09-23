@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->post('/register', ['uses' => 'RegisterController@register']);
-    $router->post('/login', ['uses' => 'LoginController@login']);
-    $router->get('/users/{id}', ['uses' => 'UserController@show']);
+    $router->post('/user/register', ['as' => 'api.register', 'uses' => 'RegisterController@register']);
+    $router->post('/user/login', ['as' => 'api.login', 'uses' => 'LoginController@login']);
+    $router->get('/user/{id}', ['as' => 'api.user', 'uses' => 'UserController@show']);
 });

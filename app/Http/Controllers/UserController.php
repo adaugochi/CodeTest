@@ -28,7 +28,10 @@ class UserController extends Controller
     }
 
     /**
+     * Fetch authorize user data
+     *
      * @urlParam  id required The ID of the user.
+     * @responseFile responses/user.get.json
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * @author Adaa Mgbede <adaa@cottacush.com>

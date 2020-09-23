@@ -12,25 +12,21 @@ use Illuminate\Support\Facades\Validator;
  *
  * APIs for managing users
  *
- * Class ApiAuthController
+ * Class RegisterController
  * @package App\Http\Controllers
  * @author Adaa Mgbede <adaamgbede@gmail.com>
  */
 class RegisterController extends Controller
 {
     /**
+     * User Registration
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @author Maryfaith Mgbede <adaamgbede@gmail.com>
      *
-     * @response {
-     *  "status": "success",
-     *  "access_token": "eyJ0eXAiOiJKV1Qi..."
-     * }
-     *
-     * @response  422 {
-     *  "errors": "failed validation"
-     * }
+     * @response {"status": "success","access_token": "eyJ0eXAiOiJKV1Qi..."}
+     * @response  422 {"errors": "failed validation"}
      *
      * @bodyParam  first_name string required The first name of the user. Example: John
      * @bodyParam  last_name string required The last name of the user. Example: Doe
